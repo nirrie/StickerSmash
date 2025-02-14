@@ -1,5 +1,8 @@
 import { Text, View, StyleSheet } from 'react-native';
 import { Link } from 'expo-router'
+import { Image } from 'expo-image';
+
+const PlaceholderImage = require('@/assets/images/background-image.png');
 
 export default function Index() {
   return (
