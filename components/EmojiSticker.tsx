@@ -11,12 +11,14 @@ type Props = {
 
 export default function EmojiSticker({ imageSize, stickerSource }: Props) {
     const scaleImage = useSharedValue(imageSize);
+    const translateX = useSharedValue(0);
+    const translateY = useSharedValue(0);
 
     const doubleTap = Gesture.Tap()
         .numberOfTaps(2)
         .onStart(() => {
-        if (scaleImage.value === imageSize * 2) {
-            scaleImage.value = scaleImage.value;
+        if (scaleImage.value !== imageSize * 2) {
+            scaleImage.value = scaleImage.value * 2;
         } else {
             scaleImage.value = Math.round(scaleImage.value / 2);
         }
@@ -30,14 +32,14 @@ export default function EmojiSticker({ imageSize, stickerSource }: Props) {
     });
     
     return (
-        <View style={{ top: -350 }}>
+        <Animated.View style={{ top: -350 }}>
             <GestureDetector gesture={doubleTap}>
             <Animated.Image
                 source={stickerSource}
                 resizeMode="contain"
-                style={[ imageStyle, {width: imageSize, height: imageSize}]}
+                style={{ width: imageSize, height: imageSize}}
             />
             </GestureDetector>
-        </View>
+        </Animated.View>
     );
 }
