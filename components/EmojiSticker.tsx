@@ -16,7 +16,7 @@ export default function EmojiSticker({ imageSize, stickerSource }: Props) {
             <Animated.Image
                 source={stickerSource}
                 resizeMode="contain"
-                style={{ width: imageSize }}
+                style={{ width: imageSize, height: imageSize }}
             />
         </View>
     );
