@@ -39,27 +39,23 @@ export default function EmojiSticker({ imageSize, stickerSource }: Props) {
     const containerStyle = useAnimatedStyle(() => {
         return {
             transform: [
-                {
-                    translateX: translateX.value,
-                },
-                {
-                    translateY: translateY.value,
-                },
+                { translateX: translateX.value },
+                { translateY: translateY.value},
             ],
         };
     });
 
+    const combinedGestures = Gesture.Simultaneous(drag, doubleTap);
+
     
     return (
-        <GestureDetector gesture={drag}>
+        <GestureDetector gesture={combinedGestures}>
         <Animated.View style={[ containerStyle, { top: -350 }]}>
-            <GestureDetector gesture={doubleTap}>
             <Animated.Image
                 source={stickerSource}
                 resizeMode="contain"
-                style={{ width: imageSize, height: imageSize}}
+                style={[imageStyle, { width: imageSize, height: imageSize}]}
             />
-            </GestureDetector>
             </Animated.View>
         </GestureDetector>
     );
