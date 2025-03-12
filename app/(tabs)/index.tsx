@@ -53,26 +53,25 @@ export default function Index() {
 
   return (
     <GestureHandlerRootView style={styles.container}>
-      <View>
+      <View style={styles.imageContainer}>
         <ImageViewer imgSource={PlaceholderImage} selectedImage={selectedImage} />
         {pickedEmoji && <EmojiSticker imageSize={40} stickerSource={pickedEmoji} />}
       </View>
       {showAppOptions ? (
         <View style={styles.optionsContainer}>
           <View style={styles.optionsRow}>
-          <IconButton icon="refresh" label="Reset" onPress={onReset} />
-          <CircleButton onPress={onAddSticker} />
-          <IconButton icon="save-alt" label="save" onPress={onSaveImageAsync} />
+            <IconButton icon="refresh" label="Reset" onPress={onReset} />
+            <CircleButton onPress={onAddSticker} />
+            <IconButton icon="save-alt" label="save" onPress={onSaveImageAsync} />
           </View>
-          </View>
+        </View>
       ) : (
-      <View style={styles.footerContainer}>
-        <Button theme="primary" label="Choose a photo" onPress={pickImageAsync} />
-        <Button label="Use this photo" onPress={() => setShowAppOptions(true)} />
-          </View>
-          
-        
+        <View style={styles.footerContainer}>
+          <Button theme="primary" label="Choose a photo" onPress={pickImageAsync} />
+          <Button label="Use this photo" onPress={() => setShowAppOptions(true)} />
+        </View>
       )}
+          
       <EmojiPicker isVisible={isModalVisible} onClose={onModalClose}>
         <EmojiList onSelect={setPickedEmoji} onCloseModal={onModalClose} />
       </EmojiPicker>
